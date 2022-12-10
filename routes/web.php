@@ -26,3 +26,19 @@ Auth::routes();
 Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');
+
+Route::get('/home/reservation', function() {
+    return view('reservation');
+})->name('reservation')->middleware('auth');
+
+Route::get('/home/transaction', function() {
+    return view('transaction');
+})->name('transaction')->middleware('auth');
+
+Route::get('/home/room', function() {
+    return view('room');
+})->name('room')->middleware('auth');
+
+Route::get('/home/report', function() {
+    return view('report');
+})->name('report')->middleware('auth');
