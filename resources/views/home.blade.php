@@ -7,6 +7,7 @@
 @stop
 
 @section('content')
+<<<<<<< HEAD
 
       <!-- Content Row -->
       <div class="row">
@@ -19,6 +20,13 @@
                 <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Paket Travel</div>
                   <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
+=======
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <p class="mb-0">Selamat Datang Di Hotel Kami</p>
+>>>>>>> 7a2e2e81a643c59cd96be33dba3a970c7d86d7b0
                 </div>
                 <div class="col-auto">
                   <i class="fas fa-hotel fa-2x text-gray-300"></i>
