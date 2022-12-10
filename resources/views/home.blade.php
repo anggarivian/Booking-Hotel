@@ -7,12 +7,8 @@
 @stop
 
 @section('content')
-<<<<<<< HEAD
 
-      <!-- Content Row -->
       <div class="row">
-
-        <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
           <div class="card border-left-primary shadow h-100 py-2">
             <div class="card-body">
@@ -20,13 +16,6 @@
                 <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Paket Travel</div>
                   <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
-=======
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <p class="mb-0">Selamat Datang Di Hotel Kami</p>
->>>>>>> 7a2e2e81a643c59cd96be33dba3a970c7d86d7b0
                 </div>
                 <div class="col-auto">
                   <i class="fas fa-hotel fa-2x text-gray-300"></i>
@@ -35,8 +24,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
           <div class="card border-left-success shadow h-100 py-2">
             <div class="card-body">
@@ -52,8 +39,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
           <div class="card border-left-info shadow h-100 py-2">
             <div class="card-body">
@@ -73,8 +58,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Pending Requests Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
           <div class="card border-left-warning shadow h-100 py-2">
             <div class="card-body">
@@ -92,5 +75,5 @@
         </div>
       </div>
     </div>
-    <!-- /.container-fluid -->
+
 @stop
