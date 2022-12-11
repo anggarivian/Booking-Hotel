@@ -14,18 +14,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landingpage');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/landingpage', [App\Http\Controllers\HomeController::class, 'index'])->name('landingpage');
 
 Auth::routes();
 
+Route::get('/landingpage/detail', function() {
+    return view('detail');
+})->name('detail');
+
 Route::get('/home', function() {
     return view('home');
-})->name('home')->middleware('auth');
+})->name('home');
 
 Route::get('/home/reservation', function() {
     return view('reservation');

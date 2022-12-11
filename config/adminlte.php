@@ -308,7 +308,7 @@ return [
         ],
         [
             'text' => 'blog',
-            'url'  => 'admin/blog',
+            'url'  => 'home/blog',
             'can'  => 'manage-blog',
         ],
         ['header' => 'MANAGEMENT HOTEL'],
