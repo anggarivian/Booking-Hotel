@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>@yield('title')</title>
 
+  
     @stack('prepend-style')
     @include('includes.style')
     @stack('addon-style')

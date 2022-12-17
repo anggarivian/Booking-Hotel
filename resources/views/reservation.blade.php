@@ -10,7 +10,6 @@
 
 <div class="container-fluid">
     <div class="card card-default">
-    <div class="card-header">{{__('CHECK IN')}}</div>
         <div class="card-body">
         <button class="btn btn-primary" data-toggle="modal" data-target="#tambahBukuModal">
                 <i class="fa fa-plus"> Tambah Booking</i>
@@ -21,10 +20,12 @@
                     <tr class="text-center">
                         <th>Res. ID</th>
                         <th>User ID</th>
-                        <th>Nama User</th>
-                        <th>Kelas</th>
+                        <th>Nama</th>
+                        <th>Email</th>
                         <th>No. Kamar</th>
-                        <th>Durasi</th>
+                        <th>Nama Kamar</th>
+                        <th>Jumlah Hari</th>
+                        <th>Lama Inap</th>
                         <th>Opsi</th>
                     </tr>
                 </thead>
@@ -35,16 +36,16 @@
                         <td>Angga</td>
                         <td>Angga</td>
                         <td>Angga</td>
-                        <td>Angga Saepul Rivian</td>
+                        <td>Angga</td>
+                        <td>Angga</td>
+                        <td>Angga</td>
                         <td>
-                            <div class="btn-group" role="group" aria-label="Basic example"> 
                                 <button type="button" id="btn-edit-buku" class="btn btn-success">
                                     Check In
                                 </button> 
                                 <button type="button" class="btn btn-danger" >
                                     Hapus
                                 </button>
-                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -66,8 +67,17 @@
                                     <form method="post" enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group">
-                                            <label for="user_id">User ID</label>
-                                            <input type="text"class="form-control" name="user_id" id="user_id" required/>
+                                        <label for="kelas_kamar">User ID</label>
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle form-control" type="button" data-toggle="dropdown" aria-expanded="false">
+                                                    Pilih User
+                                                </button>
+                                                <div class="dropdown-menu w-100">
+                                                    <a class="dropdown-item" href="#">1</a>
+                                                    <a class="dropdown-item" href="#">2</a>
+                                                    <a class="dropdown-item" href="#">3</a>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="nama_user">Nama</label>
@@ -87,16 +97,12 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="no_kamar">Nomor Kamar</label>
-                                            <input type="text"class="form-control" name="no_kamar" id="no_kamar" required/>
+                                            <label for="durasi">Pilih Tanggal</label>
+                                            <input type="date" class="form-control" name="durasi" id="durasi" required/>
                                         </div>
                                         <div class="form-group">
-                                            <label for="durasi">Durasi</label>
+                                            <label for="durasi">Lama Hari Inap</label>
                                             <input type="text" class="form-control" name="durasi" id="durasi" required/>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">TUTUP</button>
-                                            <button type="submit" class="btn btn-primary">TAMBAH</button>
                                         </div>
                                     </form>
                                 </div>

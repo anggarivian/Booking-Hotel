@@ -313,23 +313,23 @@ return [
         ],
         ['header' => 'MANAGEMENT HOTEL'],
         [
+            'text'        => 'User',
+            'url'         => 'admin/user',
+            'icon'        => 'far fa-fw fa-user',
+        ],
+        [
             'text'        => 'Reservation',
-            'url'         => 'home/reservation',
+            'url'         => 'admin/reservation',
             'icon'        => 'far fa-fw fa-check-square',
         ],
         [
-            'text'        => 'Transaction',
-            'url'         => 'home/transaction',
-            'icon'        => 'far fa-fw fa-calendar-plus',
-        ],
-        [
             'text'        => 'Room',
-            'url'         => 'home/room',
+            'url'         => 'admin/room',
             'icon'        => 'far fa-fw fa-calendar-minus',
         ],
         [
             'text'        => 'Report',
-            'url'         => 'home/report',
+            'url'         => 'admin/report',
             'icon'        => 'far fa-fw fa-clone',
         ],
 

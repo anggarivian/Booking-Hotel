@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,30 +20,23 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/landingpage', [App\Http\Controllers\HomeController::class, 'index'])->name('landingpage');
+
+Route::get('/admin/reservation', [\App\Http\Controllers\AdminController::class, 'reservation'])->name('reservation')->middleware('admin');
+
+Route::get('/admin/user', [\App\Http\Controllers\AdminController::class, 'user'])->name('user')->middleware('admin');
+
+Route::post('/admin/user', [\App\Http\Controllers\AdminController::class, 'submit_user'])->name('admin.user.submit')->middleware('admin');
 
 Auth::routes();
+
+Route::get('/admin', function () {
+    return view('home');
+})->name('home')->middleware('admin');
+
+Route::get('/landingpage', function () {
+    return view('landingpage');
+})->name('landingpage')->middleware('auth');
 
 Route::get('/landingpage/detail', function() {
     return view('detail');
 })->name('detail');
-
-Route::get('/home', function() {
-    return view('home');
-})->name('home');
-
-Route::get('/home/reservation', function() {
-    return view('reservation');
-})->name('reservation')->middleware('auth');
-
-Route::get('/home/transaction', function() {
-    return view('transaction');
-})->name('transaction')->middleware('auth');
-
-Route::get('/home/room', function() {
-    return view('room');
-})->name('room')->middleware('auth');
-
-Route::get('/home/report', function() {
-    return view('report');
-})->name('report')->middleware('auth');

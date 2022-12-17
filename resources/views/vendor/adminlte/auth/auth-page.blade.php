@@ -1,6 +1,6 @@
 @extends('adminlte::master')
 
-@php( $dashboard_url = View::getSection('dashboard_url') ?? config('adminlte.dashboard_url', 'admin') )
+@php( $dashboard_url = View::getSection('dashboard_url') ?? config('adminlte.dashboard_url', 'home') )
 
 @if (config('adminlte.use_route_url', false))
     @php( $dashboard_url = $dashboard_url ? route($dashboard_url) : '' )
