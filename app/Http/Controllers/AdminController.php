@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use App\Models\User;
+use App\Models\Kamar;
 use PDF;
 
 class AdminController extends Controller
@@ -27,27 +28,14 @@ class AdminController extends Controller
         return view('home', compact('user'));
     }
 
-    public function reservation()
-    {
+    // CRUD User ---------------------------------------------------------------------------------------------------------------
+    public function user(){
         $user = Auth::user();
         $user = User::all();
-        return view('reservation', compact('user'));
+        return view('user', compact('user'));
     }
 
-    public function user()
-      {
-        $user = Auth::user();
-        return view('user', compact('user'));
-      }
-
-    public function submit_user(Request $req){
-
-        $validate = $req->validate([
-            'name' => 'required|max:255',
-            'email' =>'required',
-            'phone' =>'required',
-            'address' =>'required',
-        ]);
+      public function submit_user(Request $req){
 
         $user = new User;
 
@@ -55,7 +43,9 @@ class AdminController extends Controller
         $user->email = $req->get('email');
         $user->phone = $req->get('phone');
         $user->address = $req->get('address');
-
+        $user->password = bcrypt('12345') ;
+        $user->roles_id = 2 ;
+        
         if($req->hasFile('picture')){
             $extension = $req->file('picture')->extension();
 
@@ -75,72 +65,128 @@ class AdminController extends Controller
         return redirect()->route('admin.user')->with($notification);
     }
 
-    // public function getDataUser($id){
+    public function getDataUser($id){
 
-    //     $user = User::find($id);
+        $user = User::find($id);
         
-    //     return response()->json($user);
-    // }
+        return response()->json($user);
+    }
 
-    // public function update_book(Request $req) { 
+    public function update_user(Request $req) { 
 
-    //     $book = Book::find($req->get('id'));
+        $user = User::find($req->get('id'));
 
-    //     $validate = $req->validate([
-    //         'judul' => 'required|max:255', 
-    //         'penulis' => 'required', 
-    //         'tahun' => 'required', 
-    //         'penerbit' => 'required', 
-    //     ]);
+        $user->name = $req->get('name');
+        $user->email = $req->get('email');
+        $user->phone = $req->get('phone');
+        $user->address = $req->get('address');
+        $user->password = bcrypt('12345') ;
+        $user->roles_id = 2 ;
 
-    //     $book->judul = $req->get('judul'); 
-    //     $book->penulis = $req->get('penulis'); 
-    //     $book->tahun = $req->get('tahun'); 
-    //     $book->penerbit = $req->get('penerbit'); 
-
-    //     if ($req->hasFile('cover')) {
-    //         $extension = $req->file('cover')->extension(); 
-    //         $filename = 'cover_buku_'.time().'.'.$extension;
-    //         $req->file('cover')->storeAs('public/cover_buku', $filename ); 
+        if ($req->hasFile('picture')) {
+            $extension = $req->file('picture')->extension(); 
+            $filename = 'picture_user_'.time().'.'.$extension;
+            $req->file('picture')->storeAs('public/picture_user', $filename ); 
             
-    //         Storage::delete('public/cover_buku/'.$req->get('old_cover')); 
-    //         $book->cover = $filename; 
-    //     } 
+            Storage::delete('public/picture_user/'.$req->get('old_picture')); 
+            $user->picture = $filename; 
+        } 
         
-    //     $book->save(); 
+        $user->save(); 
 
-    //     $notification = array( 
-    //         'message' => 'Data buku berhasil diubah', 
-    //         'alert-type' => 'success'
-    //     );
+        $notification = array( 
+            'message' => 'Data User berhasil diubah', 
+            'alert-type' => 'success'
+        );
 
-    //     return redirect()->route('admin.books')->with($notification);
-    // }
+        return redirect()->route('admin.user')->with($notification);
+    }
 
+    public function delete_user($id) { 
 
-    // public function delete_book($id) { 
+        $user = User::find($id); 
 
-    //     $book = Book::find($id); 
-
-    //     Storage::delete('public/cover_buku/'.$book->cover);
+        Storage::delete('public/picture_user/'.$user->cover);
         
-    //     $book->delete(); 
+        $user->delete(); 
         
-    //     $success = true; 
-    //     $message = "Data buku berhasil dihapus"; 
+        $success = true; 
+        $message = "Data buku berhasil dihapus"; 
         
-    //     return response()->json([ 
-    //         'success' => $success, 
-    //         'message' => $message, 
-    //     ]); 
-    // }
+        return response()->json([ 
+            'success' => $success, 
+            'message' => $message, 
+        ]); 
+    }
 
-    // public function print_books(){
+    // CRUD Kamar ---------------------------------------------------------------------------------------------------------------
+    public function kamar(){
+        $user = Auth::user();
+        $kamar = Kamar::all();
+        return view('kamar', compact('user','kamar'));
+    }
+
+    public function submit_kamar(Request $req){
+
+        $kamar = new Kamar;
+
+        $kamar->kelas = $req->get('kelas');
+        $kamar->status = 'Kosong';
+        $kamar->harga = $req->get('harga');
+        $kamar->fasilitas = $req->get('fasilitas');
         
-    //     $books = Book::all();
+        if($req->hasFile('picture')){
+            $extension = $req->file('picture')->extension();
 
-    //     $pdf = PDF::loadview('print_books',['books'=> $books]);
+            $filename = 'picture_kamar'.time().'.'. $extension;
 
-    //     return $pdf->download('data-buku.pdf');
-    // }
+            $req->file('picture')->storeAs('public/picture_kamar', $filename);
+
+            $kamar->picture = $filename;
+        }
+
+        $kamar->save();
+
+        $notification = array(
+            'message' =>'Data Kamar berhasil ditambahkan', 'alert-type' =>'success'
+        );
+
+        return redirect()->route('admin.kamar')->with($notification);
+    }
+
+    public function getDataKamar($id){
+
+        $kamar = Kamar::find($id);
+        
+        return response()->json($kamar);
+    }
+
+    public function update_kamar(Request $req) { 
+
+        $kamar = Kamar::find($req->get('id'));
+
+        $kamar->kelas = $req->get('kelas');
+        $kamar->status = 'Kosong';
+        $kamar->harga = $req->get('harga');
+        $kamar->fasilitas = $req->get('fasilitas');
+
+        if ($req->hasFile('picture')) {
+            $extension = $req->file('picture')->extension(); 
+            $filename = 'picture_kamar_'.time().'.'.$extension;
+            $req->file('picture')->storeAs('public/picture_kamar', $filename ); 
+            
+            Storage::delete('public/picture_kamar/'.$req->get('old_picture')); 
+            $kamar->picture = $filename; 
+        } 
+        
+        $kamar->save(); 
+
+        $notification = array( 
+            'message' => 'Data Kamar berhasil diubah', 
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('admin.kamar')->with($notification);
+    }
+
 }
