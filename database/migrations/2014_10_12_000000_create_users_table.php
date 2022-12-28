@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('address');
             $table->string('password');
             $table->foreignId('roles_id')->constrained();
-            $table->string('cover')->nullable();
+            $table->string('picture')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

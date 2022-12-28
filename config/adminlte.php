@@ -323,8 +323,8 @@ return [
             'icon'        => 'far fa-fw fa-check-square',
         ],
         [
-            'text'        => 'Room',
-            'url'         => 'admin/room',
+            'text'        => 'Kamar',
+            'url'         => 'admin/kamar',
             'icon'        => 'far fa-fw fa-calendar-minus',
         ],
         [
